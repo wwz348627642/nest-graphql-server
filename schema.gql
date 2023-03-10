@@ -1,0 +1,61 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Article {
+  """标题"""
+  id: ID
+
+  """标题"""
+  title: String
+
+  """描述"""
+  discription: String
+
+  """首次发布时间"""
+  createTime: DateTime
+
+  """更新时间"""
+  updateTime: DateTime
+
+  """内容"""
+  content: String
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type ArticleList {
+  pageNo: Int!
+  pageSize: Int!
+  total: Int!
+  content: [Article!]!
+}
+
+type Query {
+  """获取文章列表"""
+  articleList(listForm: ListForm!): ArticleList!
+}
+
+input ListForm {
+  pageNo: Int = 1
+  pageSize: Int = 10
+}
+
+type Mutation {
+  """新增文章"""
+  createArticle(createForm: CreateForm!): Article!
+}
+
+input CreateForm {
+  """文章标题"""
+  title: String!
+
+  """文章描述"""
+  discription: String!
+
+  """文章内容"""
+  content: String!
+}
